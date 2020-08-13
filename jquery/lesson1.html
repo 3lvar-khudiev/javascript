@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h2>JQuery</h2>
+
+    <p class="color-me">Click and color me 1</p>
+    <p class="color-me">Click and color me 2</p>
+    <p class="color-me">Click and color me 3</p>
+
+    <button id="hide-colors" type="button">Hide all p</button><br><br>
+    <button id="hide-all-elements" type="button">Hide all elements</button><br><br>
+    <button id="color-buttons" type="button">Color buttons</button><br><br><br>
+
+    <p>List 1</p>
+    <ul>
+        <li>Java 1</li>
+        <li>C# 1</li>
+        <li>Python 1</li>
+    </ul>
+
+    <p>List 2</p>
+    <ul>
+        <li>Java 2</li>
+        <li>C# 2</li>
+        <li>Python 2</li>
+    </ul><br>
+
+    <button id="color-the-first-child-of-lists">Color the first child of lists </button><br><br>
+
+    <p><a href="#" target="_blank">Learn Javascript</a></p>
+    <p><a href="#" target="_parent">Learn JQuery</a></p>
+    <p><a href="#" target="_parent">Learn C#</a></p><br>
+
+    <button id="hide-href-attributes">Hide href attributes</button><br><br>
+    <button id="hide-target-is-not-blank-attributes">Hide target is not _blank attributes</button><br><br><br><br>
+
+    <table border="1">
+        <tr>
+            <th>Software</th>
+            <th>Language</th>
+        </tr>
+        <tr>
+            <td>Javascript</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>JQuery</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Angular JS</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>React JS</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Vue JS</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Node JS</td>
+            <td>English</td>
+        </tr>
+    </table><br><br>
+
+    <button id="color-table" type="button">Color table</button><br><br><br><br>
+    <script>
+        $(function () {
+            $("#hide-colors").click(function () {
+                $(".color-me").hide();
+            });
+
+            $("#color-buttons").click(function () {
+                $("button").css("background-color", "cornflowerblue")
+            });
+
+            $(".color-me").click(function () {
+                $(this).css("color", "red");
+            });
+
+            $("#hide-all-elements").click(function () {
+                $("*").hide();
+            });
+
+            $("#color-the-first-child-of-lists").click(function () {
+                $("ul li:first-child").css("color", "red");
+            });
+
+            $("#hide-href-attributes").click(function () {
+                $("[href]").hide();
+            });
+
+            $("#hide-target-is-not-blank-attributes").click(function () {
+                $("a[target != '_blank']").hide();
+            });
+
+            $("#color-table").click(function () {
+                $("tr:odd").css("background-color", "lightblue");
+            });
+        });
+    </script>
+
+    <!-- <script src="main.js"></script> -->
+</body>
+
+</html>

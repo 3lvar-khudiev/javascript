@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div id="window-size" style="
+                            width: max-content;
+                            padding: 5px 20px;
+                            background: #e0e0e0;
+                            font-family: cursive;
+                            position: fixed;
+                            top: 20px;
+                            right: 20px;
+                            ">
+        <p>Width: <span id="width"></span></p>
+        <p>Height: <span id="height"></span></p>
+        <p>Resize count: <span id="resizeCount"></span></p>
+        <p>Scroll count: <span id="scrollCount"></span></p>
+    </div>
+
+    <div id="related-target" style="
+                            width: max-content;
+                            padding: 5px 20px;
+                            background: #e0e0e0;
+                            font-family: cursive;
+                            position: fixed;
+                            right: 20px;
+                            bottom: 20px;
+                            ">
+        <p>Related Target: <span id="related"></span></p>
+    </div>
+
+    <div id="pageXY" style="
+                            width: max-content;
+                            padding: 1px 15px;
+                            background: #e0e0e0;
+                            font-family: cursive;
+                            position: fixed;
+                            bottom: 20px;
+                            display: inline-flex;
+                            ">
+        <p>X : <span id="x"></span></p>
+        <p>&nbsp;&nbsp;Y : <span id="y"></span></p>
+    </div>
+
+    <h2>JQuery</h2>
+    <p id="my-p">Normal paragraph</p>
+    <p class="my-p">Click me 1</p>
+    <p class="my-p">Click me 2</p>
+    <p class="my-p">Click me 3</p>
+    <p class="my-p">Click me 4</p>
+    <button type="button" id="Btn">Click button</button><br><br><br><br>
+
+
+    <form>
+        <p>Username: <input type="text" name="username" id="username"></p>
+        <p>Password: <input type="password" name="pass" id="pass"></p>
+        <p id="which"></p>
+        <input type="submit" value="Submit form" class="button-submit"><br><br><br><br>
+    </form><br><br>
+
+
+    <input type="text" id="my-input" value="Hello JQuery"> <span id="select-input"></span><br><br>
+    <button type="button" id="Btn2">Select text</button>
+
+
+    <div class="my-div" style="background-color: darkgoldenrod; margin-top: 100px; padding: 30px;">
+        <p>This is paragraph</p>
+        <button type="button">Button</button>
+    </div><br><br>
+
+
+    <p id="my-p2">This is PARAGRAPH 2 (click me)</p><br>
+    <p id="my-p3">This is PARAGRAPH 3 (click me)
+    <p id="result" style="
+        color: white;
+        background-color: cadetblue;
+        width: max-content;"></p>
+    </p><br><br>
+
+
+    <style>
+        #div-1,
+        #div-2,
+        #div-3 {
+            padding: 20px;
+            color: white;
+        }
+    </style>
+    <h2>Click divs</h2>
+    <div id="div-1" style="background-color: #bebebe; width: 35%;">
+        <h3>DIV 1</h3>
+        <h4 id="clickDiv1" style="text-align: center;"></h4>
+
+        <div id="div-2" style="background-color: #888888;">
+            <h3>DIV 2</h3>
+            <h4 id="clickDiv2" style="text-align: center;"></h4>
+
+            <div id="div-3" style="background-color: #515151;">
+                <h3>DIV 3</h3>
+                <h4 id="clickDiv3" style="text-align: center;"></h4>
+            </div>
+        </div>
+    </div><br><br><br>
+
+
+    <div id="events-div" style="
+                            border: 2px darkgrey solid;
+                            width: 300px;
+                            padding: 50px 50px 10px 50px;
+                            word-break: break-all;
+                            background-color: lavender;">
+        <center>
+            <button disabled>
+                <h3>Do something to this division</h2>
+            </button>
+            <p>(enter, leave, click, double-click)</p>
+            <h3 id="event-type" style="background-color: #cccfd1; width: max-content; padding: 7px;">Event type</33>
+        </center>
+
+    </div><br><br><br>
+
+    <script>
+        $(function () {
+
+            $("#my-p").on("click", function () {
+                $(this).animate({
+                    fontSize: "+=6px"
+                });
+            });
+
+            //----------------------------------------------------------------------------
+
+            var objPerson = {
+                name: "Elvar",
+                surname: "Khudiev",
+                age: 20,
+                test: function () {
+                    $("#my-p").text("Name: " + this.name + "\nSurname: " + this.surname + "\nAge: " + this.age)
+                }
+            }
+            $("#Btn").click($.proxy(objPerson, "test"));
+
+            //----------------------------------------------------------------------------
+
+            windowSize();
+
+            $(window).resize(windowSize);
+
+            function windowSize() {
+                $("#width").text($(window).width() + " px");
+                $("#height").text($(window).height() + " px");
+            }
+
+            //----------------------------------------------------------------------------
+
+            var rsCount = -1, scCount = -1;
+
+            resizeCount();
+            scrollCount();
+
+            $(window).resize(resizeCount);
+            $(window).scroll(scrollCount);
+
+            function resizeCount() {
+                $("#resizeCount").text(++rsCount);
+            }
+
+            function scrollCount() {
+                $("#scrollCount").text(++scCount);
+            }
+
+            //----------------------------------------------------------------------------
+
+            pageXY();
+
+            function marginRightPageXY() {
+                var right = $("#related-target").width() + 80;
+                $("#pageXY").css("right", right);
+            }
+
+            function pageXY() {
+                marginRightPageXY();
+
+                $(window).mousemove(function (event) {
+                    marginRightPageXY();
+                });
+
+                $(window).mousemove(function (event) {
+                    $("#x").text(event.pageX);
+                    $("#y").text(event.pageY);
+                });
+            }
+
+            //----------------------------------------------------------------------------
+
+            $("form").submit(function () {
+                var username = $("#username").val();
+                var password = $("#pass").val();
+
+                alert("Username: " + username + "\nPassword: " + password);
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#my-input").select(function () {
+                $("#select-input").text("Text selected");
+            });
+
+            $("#Btn2").click(function () {
+                $("#my-input").trigger("select");
+            })
+
+            //----------------------------------------------------------------------------
+
+            $(".button-submit").hover(
+                function () {
+                    $(this).css("background-color", "cornflowerblue");
+                },
+                function () {
+                    $(this).css("background-color", "orange");
+                }
+            )
+
+            //----------------------------------------------------------------------------
+
+            $(".my-p").each(function (i) {
+                $(this).on("click", { x: i }, function (event) {
+                    alert($(this).index() + " . paragraph + " + event.data.x + " data")
+                });
+            });
+
+            //----------------------------------------------------------------------------
+
+            $(".my-div").on("click", "button", function (event) {
+                $(event.delegateTarget).css("background-color", "cadetblue");
+            });
+
+            //----------------------------------------------------------------------------
+
+            $(".my-div").click(function (event) {
+                alert(event.isPropagationStopped());
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#my-p2").on("custom.test-namespace", function (event) {
+                alert(event.namespace);
+            });
+
+            $("#my-p2").click(function () {
+                $("#my-p2").trigger("custom.test-namespace");
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#related-target").mouseenter(function (event) {
+                $("#related").text(event.relatedTarget.nodeName);
+            })
+
+            //----------------------------------------------------------------------------
+
+            $("#my-p3").click(function () {
+                return "Hello JQuery";
+            });
+
+            $("#my-p3").click(function (event) {
+                $("#result").text(event.result);
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#div-1").click(function (e) {
+                $("#clickDiv1").text("CLICKED");
+                e.stopPropagation();
+            });
+
+            $("#div-2").click(function (e) {
+                $("#clickDiv2").text("CLICKED");
+                e.stopPropagation();
+            });
+
+            $("#div-3").click(function (e) {
+                $("#clickDiv3").text("CLICKED");
+                e.stopPropagation();
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#events-div").on("mouseenter mouseleave click dblclick", function (e) {
+                $("#event-type").text(e.type);
+            });
+
+            //----------------------------------------------------------------------------
+
+            $("#username, #pass").on("keydown click", function (e) {
+                $("#which").text(e.which);
+            });
+
+        });
+
+        // hover()            mouseenter() ve mouseleave() birleshimidir
+        // one()              on() funksiyasindan ferqi yalniz bir defe ishe dushmesidir
+        // $.proxy            movcud olan funksiyani alib ... *********************
+        // ready()            DOM tam yuklendikde ishe dushecek funksiyani gosterir
+        // resize()           browser penceresinin olcusu deyishende ishe dushur
+        // scroll()           scroll edende ishe dushur
+        // submit()           form submit edilende ishe dushur
+        // trigger()          sechilen elementlerin eventini real olaraq ishe sal
+        // triggerHandler()   sechilen elementlerden yalniz birincinin eventindeki funksiyalari ishe sal
+
+        // event.pageX                elementin sol kenarina gore mouse koordinatini return edir
+        // event.pageY                elementin ust kenarina gore mouse koordinatini return edir
+        // event.preventDefault()     eventin funksiyalarini engelle
+        // event.namespace()          event ishe dushende verilen adi return edir
+        // event.relatedTarget()      mouse hereketi zamani hansi elemente girilib-chixildigini return edir
+        // event.result               verilen event terefinden ishe salinan eventin return etdiyi son deyer
+        // event.target               hansi DOM elementinin eventi ishe saldigini return edir
+        // event.timeStamp            1970-den indiye qeder kecen millisaniye sayini return edir
+        // event.stopPropogation()    elementi sanki ust elementlerden ayirir, ve event yalniz ozune tesir edir
+        // event.type                 hansi event type-in ishe dushduyunu gosterir
+
+        // event.stopImmediatePropagation()          diger eventlerin chagirilmasini engelle
+
+    </script>
+
+</body>
+
+</html>

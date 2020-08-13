@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h2>JQuery</h2>
+
+    <p class="color-me">Click and color me 1</p>
+    <p class="color-me">Click and color me 2</p>
+    <p class="color-me">Click and color me 3</p>
+    <div></div>
+    <div>
+        <p>Has usage</p>
+    </div>
+    <p><input type="image" width="50" src="image/photo1.jpg"></p>
+
+    <form>
+        <p>
+            <label for="username">Username: </label>
+            <input type="text" id="username">
+        </p>
+        <p>
+            <label for="password">Password: </label>
+            <input type="password" id="password">
+        </p>
+        <p>
+            <label for="email">Email: </label>
+            <input type="text" id="email" value="elvarkhudiev@gmail.com" disabled>
+        </p>
+        <p>
+            <label for="message">Message: </label>
+            <textarea id="message"></textarea>
+        </p>
+        <p>
+            <input type="checkbox" id="agree">Confirm
+        </p>
+        <p>
+            <label>
+                <input type="radio" name="RadioGroup1" value="1" id="RadioGroup1_0">
+                Male
+            </label><br>
+            <label>
+                <input type="radio" name="RadioGroup1" value="0" id="RadioGroup1_1">
+                Female
+            </label><br>
+        </p>
+        <p><input type="file"></p>
+        <p><input type="reset" value="Clear"></p>
+        <p><input type="submit" value="Send"></p>
+    </form>
+
+    <ul>
+        <li>
+            <a href="#">Google</a>
+        </li>
+        <li>
+            <a href="#">Yahoo</a>
+        </li>
+        <li>
+            <a href="#">Yandex</a>
+        </li>
+        <li>
+            <a href="#">Bing</a>
+        </li>
+    </ul><br>
+
+    <div id="result">
+        <h3>Here is the result</h3><br><br>
+    </div>
+
+    <button>Click me</button>
+
+    <script>
+        $(function () {
+            $(".color-me").click(function () {
+                $(this).css("color", "red");
+            });
+
+            // mouse, key events...
+
+            $("a:not(':contains(Yandex)')")
+                .css("background-color", "cornflowerblue");
+
+            $(":button")
+                .css("background-color", "red")
+                .css("width", "100px")
+                .css("height", "40px");
+
+            // :not()        verilen kriteriyaya uygun olmayan elementler
+
+            // :odd          tek nomreli siradaki elementler
+            // :even         cut nomreli siradaki elementler
+            // :password     password tipindeki form elementleri
+            // :radio        radio tipindeki form elementleri
+            // :reset        reset tipindeki elementler
+            // :selected     selected veziyyetinde olan form elementleri
+            // :text         text tipindeki form elementleri
+            // :visible      visible veziyyetinde olan elementleri
+            // :first        kriteriyaya uygun olan ilk element
+            // :last         kriteriyaya uygun olan son element
+
+            // :button       butun button elementleri
+            // :submit       butun submit elementleri
+            // :checkbox     butun checkbox elementleri
+            // :checked      butun check edilmish checkbox elementleri
+            // :contains()   verilen deyeri ehate eden elementler
+            // :disabled     disable edilmish form elementleri
+            // :empty        metnler daxil hech bir alt elementi olmayan elementler
+            // :file         file tipindeki butun elementler
+            // :focus        cursorun uzerinde oldugu element
+            // :has()        verilen element childleri arasinda olan elementler
+            // :header       header elementleri (h1, h2, ...)
+            // :image        image form elementleri
+            // :input        input, textarea, select ve button form elementleri
+
+
+            $("#username").mouseenter(function () {
+                $(this).css("bacground-color", "red");
+            });
+
+            $("#result").on("click mouseleave", function () {
+                $("h3").css("color", "cornflowerblue");
+            });
+
+            // $("p").on({
+            //     mouseenter: function () {
+            //         $(this)
+            //             .css("background", "darkred")
+            //             .css("height", "90px");
+            //     },
+            //     mouseleave: function () {
+            //         $(this)
+            //             .css("background", "cornflowerblue")
+            //             .css("height", "40px");
+            //     },
+            //     mousedown: function () {
+            //         $(this)
+            //             .css("background", "blue")
+            //             .css("height", "90px");
+            //     },
+            //     mouseup: function () {
+            //         $(this)
+            //             .css("background", "cornflowerblue")
+            //             .css("height", "90px");
+            //     }
+            // });
+
+            // on()        birden chox event elave etmek uchun
+            // off()       on() ile elave eventleri silmek uchun
+            // click()     elemente click edildikde ishe dushur
+            // dblclick()  elemente double-click edildikde ishe dushur
+            // blur()      focus eventinden cixanda ishe dushur
+            // change()    ish gorulen elementde deyishiklik olanda ishe dushur
+            // select()    obyekt sechildikde ishe dushur
+
+            // bind()           Version 3.0-dan deprecate olunub | on()
+            // unbind()         Version 3.0-dan deprecate olunub | off()
+            // delegate()       Version 3.0-dan deprecate olunub | on()
+            // undelegate()     Version 3.0-dan deprecate olunub | off()
+            // live()           Version 1.7-dan deprecate olunub ve 1.9-dan silinib | on()
+            // die()            Version 1.7-dan deprecate olunub ve 1.9-dan silinib | off()
+            // error()          Version 1.8-dan deprecate olunub ve 3.0-dan silinib
+
+
+        });
+    </script>
+
+    <!-- <script src="main.js"></script> -->
+</body>
+
+</html>

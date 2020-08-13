@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JS events example, CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Events</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <h1 id="header">Javascript Events</h1><br>
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <h2 class="h2">Calculator</h2>
+    <div class="calculate-container">
+        <div class="col1">
+            <p>
+                Number one: <input class="input" id="numberOne">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Number two: <input class="input" id="numberTwo">
+            </p>
+        </div>
+        <div class="col2">
+            <p>sum equals: </p>
+            <p>subtract equals: </p>
+            <p>multiply equals: </p>
+            <p>division equals: </p>
+        </div>
+        <div class="col3">
+            <p><span id="resultSum" class="result"></span></p>
+            <p><span id="resultSubtract" class="result"></span></p>
+            <p><span id="resultMultiply" class="result"></span></p>
+            <p><span id="resultDivision" class="result"></span></p>
+        </div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <h2 class="h2">Accordion</h2>
+    <div id="accordion">
+        <h2>Section 1 ﹢</h2>
+        <div id="section1">
+            <p class="section">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <h2>Section 2 ﹢</h2>
+        <div id="section2">
+            <p class="section">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <h2>Section 3 ﹢</h2>
+        <div id="section3">
+            <p class="section">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <h2 class="h2">Click div</h2>
+    <div id="rect-container">
+        <div id="rectangle">
+            <br>&nbsp;&nbsp;console.log("rectangle");
+            <br>
+            <h3 class="click">CLICK</h3>
+            <div id="square">
+                <br>&nbsp;&nbsp;console.log("square");
+                <br><br>
+                <h3 class="click">CLICK</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <span id="gallery"></span>
+    <br>
+    <h2 class="h2">Simple Image Gallery</h2>
+    <div id="gallery-container">
+        <ul class="image-list">
+            <li>
+                <a data-pic="image1" id="thumb1" href="#gallery">
+                    <img src="image/thumb1.jpg" width="140" height="140">
+                </a>
+            </li>
+            <li>
+                <a data-pic="image2" id="thumb2" href="#gallery">
+                    <img src="image/thumb2.jpg" width="140" height="140">
+                </a>
+            </li>
+            <li>
+                <a data-pic="image3" id="thumb3" href="#gallery">
+                    <img src="image/thumb3.jpg" width="140" height="140">
+                </a>
+            </li>
+        </ul>
+
+        <div>
+            <img class="hide" id="image1" src="image/mg1.jpg" width="350" height="350">
+            <img class="hide" id="image2" src="image/img2.jpg" width="350" height="350">
+            <img class="hide" id="image3" src="image/img3.jpg" width="350" height="350">
+        </div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <br>
+    <h2 class="h2">CSS GRID</h2>
+    <div class="container">
+        <div class="box box1">SECTION 1</div>
+        <div class="box box2">SECTION 2</div>
+        <div class="box box3">SECTION 3</div>
+        <div class="box box4">SECTION 4</div>
+        <div class="box box5">SECTION 5</div>
+        <div class="box box6">SECTION 6</div>
+    </div>
+
+
+    <!-- --------------------------------------------------------------------------------------- -->
+
+    <div class="icon-div">
+        <a href="https://start.spring.io/" target="_blank">
+            <h2 class="icon-h2">
+                Spring Initializr &nbsp;<img src="https://image.flaticon.com/icons/svg/25/25284.svg" alt="start.spring.io" class="link-icon">
+            </h2>
+        </a>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="css/lesson4.css">
+</head>
+
+<body>
+    <div id="container">
+        <center>
+            <h1>JQuery</h2>
+        </center>
+
+
+        <h2 class="header">hide() | show() | toggle()</h2>
+
+        <div class="comment">
+            <p class="comment-text">
+                This is first comment. This is first comment. This is first comment. This is first comment. This is first comment. This is first comment. This is first comment. This is first comment.
+            </p>
+
+            <textarea class="text-area" rows="4" placeholder="Reply this comment"></textarea>
+
+            <p style="margin: 0;">
+                <button class="btn-close">
+                Close
+            </button>
+                <button class="btn-reply">
+                Reply
+            </button>
+            </p>
+        </div><br>
+
+        <hr>
+        <br>
+        <h2 class="header">fadeIn() | fadeOut() | fadeToggle()</h2>
+        <div class="fade-container">
+            <div class="fade">
+                <center>
+                    <h3>JQuery</h3>
+                    <p id="appendHere"></p>
+                </center>
+            </div>
+
+            <button class="btn-fade">
+            Click
+        </button>
+        </div><br><br>
+
+        <hr>
+        <br>
+        <h2 class="header">slideDown() | slideUp() | slideToggle()</h2>
+        <div id="slide">
+            <center>
+                <h4 id="slideType"></h4>
+            </center>
+
+            <button id="btnSlide">
+            <h3>Click</h3>
+        </button>
+
+            <div id="panel">
+                Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel Panel
+            </div>
+        </div><br><br>
+
+
+        <hr>
+        <br>
+        <div id="animate">
+            <h2 class="header">animate()</h2>
+            <div id="movingDiv">
+                <center>
+                    <h3 id="text">I am JQuery</h3>
+                    <p>Click</p>
+                </center>
+            </div>
+        </div><br>
+
+    </div>
+
+    <script>
+        $(function() {
+            $("#slideType").hide();
+            $("#panel").hide();
+
+            $("#btnSlide").click(function() {
+                $("#panel").slideToggle("slow", function() {
+                    if ($("#panel").is(":hidden")) {
+                        $("#slideType").text("slideUp()");
+                    } else {
+                        $("#slideType").text("slideDown()");
+                    }
+
+                    $("#slideType").show();
+                });
+            });
+
+            //-------------------------------------------------------
+
+            $(".text-area").hide();
+            $(".btn-close").hide();
+
+            $(".btn-reply").on("click", function() {
+                $(".text-area").show("fast");
+                $(".btn-close").show("fast");
+                $(".text-area").focus();
+            });
+
+            $(".btn-close").on("click", function() {
+                $(".text-area").hide("fast");
+                $(this).hide("fast");
+            });
+
+            //-------------------------------------------------------
+
+            $(".btn-fade").click(function() {
+                $(".fade").fadeToggle(1000, function() { // callback function
+                    $(this).fadeToggle(1000);
+                    $("#appendHere").append("😊");
+                });
+            });
+        });
+
+        //-------------------------------------------------------
+
+        $("#movingDiv").click(function() {
+            var movingDiv = $(this);
+
+            movingDiv.animate({
+                fontSize: "20",
+                width: "200",
+                height: "200",
+                top: '700',
+                left: '570'
+            }, 1000, function() {
+                $(this).css("border", "2px dashed white");
+            });
+        });
+
+
+        // fadeIn(1000)             animasiya ile show et
+        // fadeOut(1000)            animasiya ile hide et
+        // fadeToggle(1000)         animasiya ile show-hide/hide-show et
+        // fadeTo(1000, 0.3)        animasiya ile opacity elave et
+    </script>
+
+</body>
+
+</html>
