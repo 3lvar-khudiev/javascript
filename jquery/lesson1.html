@@ -42,8 +42,8 @@
     <p><a href="#" target="_parent">Learn JQuery</a></p>
     <p><a href="#" target="_parent">Learn C#</a></p><br>
 
-    <button id="hide-href-attributes">Hide href attributes</button><br><br>
-    <button id="hide-target-is-not-blank-attributes">Hide target is not _blank attributes</button><br><br><br><br>
+    <button id="hide-target-is-not-blank-attributes">Hide target is not _blank attributes</button><br><br>
+    <button id="hide-href-attributes">Hide href attributes</button><br><br><br><br>
 
     <table border="1">
         <tr>
@@ -78,36 +78,36 @@
 
     <button id="color-table" type="button">Color table</button><br><br><br><br>
     <script>
-        $(function () {
-            $("#hide-colors").click(function () {
+        $(function() {
+            $("#hide-colors").click(function() {
                 $(".color-me").hide();
             });
 
-            $("#color-buttons").click(function () {
+            $("#color-buttons").click(function() {
                 $("button").css("background-color", "cornflowerblue")
             });
 
-            $(".color-me").click(function () {
+            $(".color-me").click(function() {
                 $(this).css("color", "red");
             });
 
-            $("#hide-all-elements").click(function () {
+            $("#hide-all-elements").click(function() {
                 $("*").hide();
             });
 
-            $("#color-the-first-child-of-lists").click(function () {
+            $("#color-the-first-child-of-lists").click(function() {
                 $("ul li:first-child").css("color", "red");
             });
 
-            $("#hide-href-attributes").click(function () {
+            $("#hide-href-attributes").click(function() {
                 $("[href]").hide();
             });
 
-            $("#hide-target-is-not-blank-attributes").click(function () {
+            $("#hide-target-is-not-blank-attributes").click(function() {
                 $("a[target != '_blank']").hide();
             });
 
-            $("#color-table").click(function () {
+            $("#color-table").click(function() {
                 $("tr:odd").css("background-color", "lightblue");
             });
         });

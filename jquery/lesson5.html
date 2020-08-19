@@ -8,8 +8,6 @@
 
     <title>JQuery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="css/lesson4.css">
 </head>
 
 <body>
@@ -18,18 +16,68 @@
             <h1>JQuery</h2>
         </center>
 
+        <p id="text">text <b>BOLD</b> <i>ITALIC</i></p>
+        <a href="" id="link">a href link</a><br><br>
+        <input type="text" value="input" id="input"><br><br><br>
 
-        <h2 class="header">hide() | show() | toggle()</h2>
+        <button id="changeText">change text</button>
+        <button id="changeLink" class="class1">change href</button>
+        <button id="changeInput">change input value</button>
+
+        <br><br><br>
+        <button id="append" onclick="append()">Append paragraphs</button><br><br><br>
 
     </div>
 
     <script>
         $(function() {
+            $("#changeText").click(function() {
+                $("#text").html(function(x, text) {
+                    return "New text | index: " + x + "<br>";
+                });
+            });
+
+
+            $("#changeLink").click(function() {
+                $("#link").attr({
+                    "class": $(this).attr("class") + " new-class"
+                });
+
+                $("#link").attr("href", function(x, getValue) {
+                    return getValue + "/new/url";
+                });
+
+                $("#link").html($("#link").text() + "<br>Link changed<br><br>");
+            });
+
+
+            $("#changeInput").click(function() {
+                $("#input").attr("value", "value changed");
+            });
+
 
         });
 
-        // stop        davam eden animasiyani stop edir
-        //
+        function append() {
+            var text1, text2, text3;
+
+            text1 = "<p>HTML</p>"; // HTML
+
+            text2 = $("<p></p>").text("Jquery"); // JQuery
+
+            text3 = document.createElement("p"); // DOM
+            text3.innerHTML = "DOM";
+
+            $("body").append(text1, text2, text3);
+        }
+
+        // stop()        davam eden animasiyani stop edir
+        // chaining      bir setirde birden chox metod chagirmaq
+
+        // text()        elementin metn deyerini deyishdirir ve ya return edir
+        // html()        elementin metn deyerini deyishdirir ve ya return edir (html tag-lari ile birlikte)
+        // val()         form elementlerinin deyerini deyishdirir ve ya return edir
+        // attr()        elementin attributunu deyishdirir ve ya return edir
     </script>
 
 </body>
