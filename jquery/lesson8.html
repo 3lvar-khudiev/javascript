@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        [container] {
+            margin: 0 30px;
+        }
+    </style>
+
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <div container>
+        <ul class="first">
+            <li class="foo">list item 1</li>
+            <li>list item 2</li>
+            <li class="bar">list item 3</li>
+        </ul>
+        <ul class="second">
+            <li class="foo">list item 4</li>
+            <li>list item 5</li>
+            <li class="bar">list item 6</li>
+        </ul>
+
+        <p>
+            My name is Elvar.
+        </p>
+        <p>
+            I live in <span>Azerbaijan</span>.
+        </p>
+        <p>
+            I am from <span>Georgia</span>.
+        </p>
+        <button id="button1">Click</button>
+    </div>
+
+    <script>
+        $(function() {
+            $("#button1").click(function() {
+
+                var arr = [];
+
+                $("li").each(function() {
+                    arr.push($(this).text() + "\n");
+                });
+
+                window.alert(arr);
+
+
+                $("ul.first")
+                    .find(".foo").css("background-color", "darkkhaki")
+                    .end()
+                    .find(".bar").css("background-color", "darkgoldenrod");
+
+
+                $("p").has("span").css("color", "steelblue");
+
+            });
+        });
+
+        // closest()          verilen ifadeye uygun olan ilk parenti return edir
+        // contents()         sechilen elementin butun alt elementlerini return edir (metn ve comment-ler daxil)
+        // each()             verilen ifadeye uygun olan butun elementler uchun bir function chagirir
+        // end()              son istifade edilen filterin yeniden chagirila bilmesini temin edir
+        // has()              sechilen elementlerden verilen elementi ehate eden elementleri sechir
+        // is()               verilen element sechilen elementlerden en az birinin parent-i olarsa, true return edir
+        // map()              ---
+        // slice()            2 index deyeri alib ve hemin araliqdaki elementleri return edir
+    </script>
+
+</body>
+
+</html>

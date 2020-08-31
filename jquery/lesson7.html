@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1>JQuery</h2>
+    </center>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        [container] {
+            margin: 0 30px;
+        }
+        
+        .ancestors *,
+        .descendants * {
+            display: block;
+            border: 2px solid #333;
+            color: darkolivegreen;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+
+    <div container class="ancestors">
+        <div style="width: 500px;">
+            div (great-grandparent)
+
+            <ul>
+                ul (grandparent)
+                <li>
+                    li (direct parent)
+                    <span span1>
+                        span (span element)
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <hr><br>
+
+    <div container class="descendants">
+        <div div1 style="width: 500px;">
+            div (div element)
+            <p>
+                p (child)
+                <span>
+                span (grandchild)
+            </span>
+            </p>
+            <p>
+                p (child)
+                <span>
+                span (grandchild)
+            </span>
+            </p>
+        </div>
+    </div>
+    <br>
+    <hr><br>
+
+    <div container>
+        <p first-p>Paragraph 1</p>
+        <p paragraph>Paragraph 2</p>
+        <p paragraph>Paragraph 3</p>
+        <p last-p>Paragraph 4</p>
+    </div>
+    <br>
+
+    <script>
+        $("[span1]").parentsUntil("div").css({
+            "color": "red",
+            "border": "2px solid red"
+        });
+
+        $("[div1]").children("p:first").css({
+            "color": "red",
+            "border": "2px solid red"
+        });
+
+        $("[div1]").find("p:last").css({
+            "color": "red",
+            "border": "2px solid blue"
+        });
+
+        $("p").filter("[paragraph]")
+            .css("color", "#999");
+
+
+        // parent()         sechilen elementin parentini return edir
+        // parents()        sechilen elementin butun parentlerini return edir      // arg qebul edir
+        // parentsUntil()   sechilen elementden verilen elemente qeder parentleri return edir
+
+        // chldren()        sechilen elementin child-larini return edir            // arg qebul edir
+        // find()           sechilen elementin alt elementlerini sechir            // arg qebul edir
+
+        // siblings()       sechilen elementin butun qardashlarini return edir
+        // next()           sechilen elementden 1 sonraki elementi return edir
+        // nextAll()        sechilen elementden sonraki butun elementleri return edir
+        // nextUntil()      sechilen elementden sonra verilen elemente qeder olan elementleri return edir
+        // prev()           sechilen elementden 1 evvelki elementi return edir
+        // prevAll()        sechilen elementden evvelki butun elementleri return edir
+        // prevUntil()      sechilen elementden evvel verilen elemente qeder olan elementleri return edir
+
+        // first()          sechilen elementin ilkini return edir
+        // last()           sechilen elementin sonuncusunu return edir
+        // eq()             elementleri verilen index deyerine gore sechir
+        // filter()         verilen kriteriyaya uygun olan elementleri sechir
+        // not()            verilen kriteriyaya uygun olmayan elementleri sechir
+    </script>
+
+</body>
+
+</html>

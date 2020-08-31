@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="JQuery example">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <center>
+            <h1>JQuery</h2>
+        </center>
+
+        <style>
+            [ex] {
+                padding: 50px;
+            }
+        </style>
+        <div style="width: max-content; height: max-content;">
+            <div ex id="div1" style="background-color: rgb(110, 115, 124); width: 500px; height: 400px;">
+                <div ex id="div2" style="background-color: rgb(142, 151, 167); width: 400px; height: 300px; position: absolute;">
+                    <div ex id="div3" style="background-color: rgb(172, 181, 197); width: 300px; height: 200px;">
+                        <div ex id="div4" style="background-color: rgb(199, 211, 233); width: 200px; height: 100px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="click" style="
+                                padding: 10px;
+                                margin: 2px auto;
+                                background-color: #888;
+                                color: white;
+                                text-align: center;
+                                font-size: 17px;
+                                font-family: monospace;
+                                border: none;
+                                cursor: pointer;
+                                transition: 0.25s;">
+
+                CLICK
+            </div>
+        </div><br><br><br>
+
+
+        <span ex2></span>
+        <button btn-ex2>prop() example</button><br><br><br><br><br>
+
+
+        <script>
+            $(function() {
+                $("#click")
+                    .hover(function() {
+                            $(this).css({
+                                "background-color": "#aaa",
+                                "color": "#000",
+                                "font-weight": "bold"
+                            });
+                        },
+                        function() {
+                            $(this).css({
+                                "background-color": "#888",
+                                "color": "white",
+                                "font-weight": "normal"
+                            });
+                        }
+                    )
+                    .click(function() {
+                        console.log($("#div4").offsetParent())
+                        $("#div4").offsetParent().css("background-color", "black"); // div2 absolute oldugu uchun ona tesir edecek
+                    });
+
+                $("[btn-ex2]").click(function() {
+                    var $x = $("[ex2]");
+                    $x.prop("name", "prop() example");
+                    $x.append("<br>name: " + $x.prop("name") + "<br>");
+                    $x.removeProp("name");
+                    $x.append("name: " + $x.prop("name") + "<br>");
+                });
+            });
+
+            // position()         sechilen elementler uchun ofset kordinatlarini deyishir ve ya return edir (ana element)
+            // offset()           sechilen elementler uchun ofset kordinatlarini deyishir ve ya return edir (window)
+            // offsetParent()     relative en ust elementi return edir
+
+            // prop()             sechilen elementlerin property-lerini deyishdirir ve ya return edir
+            // removeProp()       verilen property-i silir
+            // removeAll()        sechilen elementleri verilen HTML ile deyishdirir
+            // removeWith()       sechilen elementleri verilen metn ile deyishdirir
+            // scrollLeft()       sechilen elementlerin x oxuna gore koordinatini deyishdirir ve ya return edir
+            // unwrap()           sechilen elementlerin parentini silir
+            // wrap()             sechilen her bir elementin etrafina HTML yerleshdirir
+            // wrapAll()          sechilen butun elementlerin etrafina HTML yerleshdirir
+            // wrapInner()        HTML-i sechilen her bir elementin icherisinin etrafina yerleshdirir
+        </script>
+
+</body>
+
+</html>

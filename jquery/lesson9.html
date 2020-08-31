@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <div container>
+        <div style="width: max-content">
+            <center>
+                <h2>AJAX</h2>
+            </center>
+
+            <hr>
+            <span id="result">
+                &nbsp;The result will be here&nbsp;
+            </span>
+            <hr>
+        </div>
+
+        <button id="button2">Click</button>
+    </div>
+
+    <script>
+        $(function() {
+            $("#button2").click(function() {
+                $("#result")
+                    .load("demo-resp-1.txt #header1, #p1", function(responseTxt, statusTxt, xhr) {
+                        if (statusTxt = "success") {
+                            alert("Success");
+                            $(this).css("color", "lightslategray");
+                        } else if (statusTxt = "error") {
+                            alert("Error: " + xhr.status + " : " + xhr.statusTxt);
+                        }
+                    })
+            });
+        });
+    </script>
+</body>
+
+</html>

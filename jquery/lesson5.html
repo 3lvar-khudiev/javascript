@@ -27,19 +27,50 @@
         <br><br><br>
         <button id="append" onclick="append()">Append paragraphs</button><br><br><br>
 
+        <p class="color" id="demo">PARAGRAPH</p>
+        <button id="remove">remove PARAGRAPH</button>
+    </div><br><br><br>
+
+    <div style="width: max-content;
+                border: 1px solid;">
+
+        <div id="elementDiv" style="
+                            padding: 15px;
+                            margin: 15px;
+                            color: white;
+                            font-size: larger;
+                            font-family: sans-serif;
+                            background-color: #6d7178;
+                            border: 15px #c0c1c4 solid;
+                            width: 350px;
+                            height: 300px;
+                            line-height: 23px;">
+
+            <div id="element2" hidden>
+            </div>
+
+            <div id="element1">
+                <span>ELEMENT</span>
+            </div>
+        </div>
+        <center>
+            <button id="toggle">Toggle</button><br><br>
+        </center>
     </div>
+    <br><br><br><br><br>
 
     <script>
         $(function() {
             $("#changeText").click(function() {
                 $("#text").html(function(x, text) {
-                    return "New text | index: " + x + "<br>";
+                    return "New text | index: " + x + "<br/>";
                 });
             });
 
 
             $("#changeLink").click(function() {
                 $("#link").attr({
+                    // "ATTRIBUTE-NAME": "NEW-VALUE"
                     "class": $(this).attr("class") + " new-class"
                 });
 
@@ -47,7 +78,7 @@
                     return getValue + "/new/url";
                 });
 
-                $("#link").html($("#link").text() + "<br>Link changed<br><br>");
+                $("#link").html($("#link").text() + "<br>Link changed<br/>");
             });
 
 
@@ -55,6 +86,32 @@
                 $("#input").attr("value", "value changed");
             });
 
+            $("#remove").click(function() {
+                $("p").remove(".color, #demo");
+            });
+
+            $("#toggle").click(function() {
+                var element = $("#elementDiv");
+                var element1 = $("#element1");
+                var element2 = $("#element2");
+
+                var text = "";
+                text += "padding: " + element.css("padding") + "<br>";
+                text += "margin: " + element.css("margin") + "<br>";
+                text += "border: " + element.css("border") + "<br><hr>";
+                text += "width(): " + element.width() + "<br>";
+                text += "innerWidth(): " + element.innerWidth() + "<br>";
+                text += "outerWidth(): " + element.outerWidth() + "<br>";
+                text += "outerWidth(true): " + element.outerWidth(true) + "<br><hr>";
+                text += "height(): " + element.height() + "<br>";
+                text += "innerHeight(): " + element.innerHeight() + "<br>";
+                text += "outerHeight(): " + element.outerHeight() + "<br>";
+                text += "outerHeight(true): " + element.outerHeight(true) + "<br>";
+
+                element1.fadeToggle(300);
+                element2.slideToggle(300);
+                element2.html(text);
+            });
 
         });
 
@@ -68,16 +125,44 @@
             text3 = document.createElement("p"); // DOM
             text3.innerHTML = "DOM";
 
-            $("body").append(text1, text2, text3);
+            $("body").append(text1, text2, text3, "<br/>");
         }
 
-        // stop()        davam eden animasiyani stop edir
-        // chaining      bir setirde birden chox metod chagirmaq
+        // stop()         davam eden animasiyani stop edir
+        // chaining       bir setirde birden chox metod chagirmaq
 
-        // text()        elementin metn deyerini deyishdirir ve ya return edir
-        // html()        elementin metn deyerini deyishdirir ve ya return edir (html tag-lari ile birlikte)
-        // val()         form elementlerinin deyerini deyishdirir ve ya return edir
-        // attr()        elementin attributunu deyishdirir ve ya return edir
+        // text()         elementin metn deyerini deyishdirir ve ya return edir
+        // html()         elementin metn deyerini deyishdirir ve ya return edir (html tag-lari ile birlikte)
+        // val()          form elementlerinin deyerini deyishdirir ve ya return edir
+        // attr()         elementin attributunu deyishdirir ve ya return edir
+
+        // append()       sechilen elementin sonuna metn elave edir
+        // prepend()      sechilen elementin evveline metn elave edir
+        // appendTo()     sechilen elementin sonuna HTML elave edir
+        // prependTo()    sechilen elementin evveline HTML elave edir
+
+        // after()        sechilen elementden sonra metn elave edir
+        // before()       sechilen elementden evvel metn elave edir
+        // insertAfter()  sechilen elementden sonra HTML elave edir
+        // insertBefore() sechilen elementden evvel HTML elave edir
+
+        // remove()       sechilen elementi silir
+        // empty()        sechilen elementin daxilindeki elementleri silir
+        // clone()        sechilen elementleri copy edir
+        // detach()       sechilen elementleri silir
+        // hasClass()     sechilen elementlerde verilen classin olub olmadigini control edir
+
+        // addClass()     sechilen elementlere bir ve ya daha chox class elave edir
+        // removeClass()  sechilen elementlerden bir ve ya daha chox class silir
+        // toggleClass()  sechilen elementlerden class elave etme / silme arasinda kechid edir
+
+        // width()             elementin enini deyishir ve ya return edir
+        // innerWidth()        elementin enini deyishir ve ya return edir (padding)
+        // outerWidth()        elementin enini deyishir ve ya return edir (padding, border)
+        // outerWidth(true)    elementin enini deyishir ve ya return edir (padding, border, margin)
+        // ...height-in metodlarida eyni ile width-deki kimidir
+
+        //css()    sechilen elementlerin style-i deyishir ve ya return edir (param. olarag obyekt oturule biler)
     </script>
 
 </body>
