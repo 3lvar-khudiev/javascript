@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 10</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .container {
+            padding: 15px;
+            margin: 10px;
+            background-color: #ebeef3;
+        }
+        
+        .message {
+            position: fixed;
+            width: max-content;
+            padding: 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            box-shadow: 0px 0px 15px 3px grey;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+        }
+        
+        #addedMessage {
+            background-color: #1c6e1c;
+            border: 5px solid #4e974e;
+        }
+        
+        #removedMessage {
+            background-color: #a32424;
+            border: 5px solid #d35959;
+        }
+        
+        #fieldsRequiredErrorMessage {
+            background-color: #b33d0f;
+            border: 5px solid #db7a54;
+        }
+        
+        #notExistsErrorMessage {
+            background-color: #96810c;
+            border: 5px solid #c9b753;
+        }
+        
+        .btn {
+            text-align: right;
+        }
+        
+        .header_label {
+            text-align: left;
+            padding-left: 15px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        .data_manage {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <h2>Miscellaneous methods</h2>
+    <hr>
+
+    <h3>Show selected node</h3>
+
+    <ul>
+        <li>Angular JS</li>
+        <li>React JS</li>
+        <li>Vue JS</li>
+        <li>Node JS</li>
+    </ul>
+
+    Node index: <input style="width: 80px;" maxlength="5" type="text" id="index">
+    <button id="showBtn">Show</button><br><br>
+    <hr>
+
+    <!-- ---------------------------------------------------------------------------------- -->
+
+    <div style="width: max-content; padding: 10px;">
+        <center>
+            <h2>Data Management</h2>
+
+            <div class="data_manage">
+                <h3 class="header_label">Insert</h3>
+
+                <div class="container">
+                    <label>Data name: </label>
+                    <input type="text" id="addDataName" maxlength="17" placeholder="Data name" style="margin-bottom: 10px; width: 191px;"><br>
+                    <textarea id="addTextArea" rows="3" placeholder="Data" style="width: 270px; resize: none;"></textarea><br><br>
+                    <div class="btn">
+                        <button id="insertBtn">Insert Data</button>
+                    </div><br>
+                </div>
+            </div>
+
+            <div class="data_manage">
+                <h3 class="header_label">Remove</h3>
+
+                <div class="container">
+                    <label>Data name: </label><input type="text" id="removeDataName" maxlength="17" placeholder="Data name" style="margin-bottom: 10px; width: 191px;"><br>
+                    <div class="btn">
+                        <button id="removeBtn">Remove Data</button>
+                    </div><br>
+                </div>
+            </div>
+
+            <div class="data_manage">
+                <h3 class="header_label">Get</h3>
+
+                <div class="container">
+                    <label>Data name: </label><input type="text" id="getDataName" maxlength="17" placeholder="Data name" style="margin-bottom: 10px; width: 191px;"><br>
+                    <div class="btn">
+                        <button id="getBtn">Get data</button>
+                    </div>
+
+                    <div>
+                        <button id="getAllBtn" style="
+                                            padding: 5px 7px;
+                                            margin-top: 15px;
+                                            font-size: 15px;
+                                            background-color: rgb(119, 119, 119);
+                                            color: white;
+                                            text-decoration: none;
+                                            border: none;">
+                        Get all data</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="result1"></div>
+
+            <div style="display: none;" class="message" id="addedMessage">Data added succesfully</div>
+            <div style="display: none;" class="message" id="removedMessage">Data removed successfully</div>
+            <div style="display: none;" class="message" id="fieldsRequiredErrorMessage">Fields are required</div>
+            <div style="display: none;" class="message" id="notExistsErrorMessage">Data is not exists</div>
+        </center>
+    </div>
+    <hr><br>
+
+    <script>
+        $(function() {
+            $("#showBtn").click(function() {
+                var index = $("#index").val();
+
+                alert($("li").get(index).innerText);
+            });
+
+            //------------------------------------------------------
+
+            $("#insertBtn").click(function() {
+                var dataName = $("#addDataName").val();
+                var data = $("#addTextArea").val();
+
+                if (dataName == "" || data == "") {
+                    fieldsRequiredError();
+                } else {
+                    $("#result1").data(dataName, data);
+                    hideAll();
+
+                    // message
+                    $('#addedMessage').fadeIn("slow");
+                    setTimeout(function() {
+                        $('#addedMessage').fadeOut("slow");
+                    }, 2500);
+                }
+            });
+
+            $("#removeBtn").click(function() {
+                var dataName = $("#removeDataName").val();
+
+                if (dataName == "") {
+                    fieldsRequiredError();
+                } else {
+                    if (typeof $("#result1").data(dataName) === 'undefined') {
+                        notExistsError();
+                    } else {
+                        hideAll();
+                        $("#result1").removeData(dataName);
+
+                        // message
+                        $('#removedMessage').fadeIn("slow");
+                        setTimeout(function() {
+                            $('#removedMessage').fadeOut("slow");
+                        }, 2500);
+                    }
+                }
+            });
+
+            $("#getBtn").click(function() {
+                var dataName = $("#getDataName").val();
+
+                if (dataName == "") {
+                    fieldsRequiredError();
+                } else {
+                    if (typeof $("#result1").data(dataName) === 'undefined') {
+                        notExistsError();
+                    } else {
+                        var value = $("#result1").data(dataName);
+                        alert('The value of the "' + dataName + '" key is equal to "' + value + '"');
+                    }
+                }
+            });
+
+            $("#getAllBtn").click(function() {
+                var dataArr = $("#result1").data();
+                alert(JSON.stringify(dataArr));
+            });
+
+            function hideAll() {
+                $('#addedMessage').hide();
+                $('#removedMessage').hide();
+                $('#fieldsRequiredErrorMessage').hide();
+                $('#notExistsErrorMessage').hide();
+            }
+
+            function fieldsRequiredError() {
+                hideAll();
+
+                $('#fieldsRequiredErrorMessage').fadeIn("slow");
+
+                setTimeout(function() {
+                    $('#fieldsRequiredErrorMessage').fadeOut("slow");
+                }, 2500);
+            }
+
+            function notExistsError() {
+                hideAll();
+
+                $('#notExistsErrorMessage').fadeIn("slow");
+                setTimeout(function() {
+                    $('#notExistsErrorMessage').fadeOut("slow");
+                }, 2500);
+            }
+
+            /*********************************************************************
+
+            var a = $.noConflict(); // a artiq sechici kimi istifade edile biler
+            var b = jQuery.noConflict(); // b artiq sechici kimi istifade edile biler
+
+            a("#result1").append("append1"); // istifadesi mumkundur
+            b("#result1").append("append2"); // istifadesi mumkundur
+
+            a(function($) { // artiq bu metod daxilinde $ sechici kimi istifade edile biler
+                $("#result1").append("append3");  // istifadesi mumkundur
+            })
+
+            $("#result1").append("append4"); // burada ise istifade edile bilmez
+
+            **********************************************************************/
+
+        });
+
+        // data()              elementlerde parametr olaraq istifade edilir
+        // get()               sechilen elementler arasindan verilen sherte uygun olanlari return edir
+        // index()             sechilen elementin index-i return edir
+        // noConflict()        jquery-in default sechici simvolunu deyishmek uchundur
+    </script>
+</body>
+
+</html>

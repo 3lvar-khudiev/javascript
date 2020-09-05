@@ -1,4 +1,4 @@
-<h2 id="header1">1 JQuery and <i>AJAX</i> is fun !!!</h2>
+<h2 id="header1">2 Query and <i>AJAX</i> is fun !!!</h2>
 <p id="p1">
 <strong>
 Unbelievable !!!, it's <i>AJAX</i> magic

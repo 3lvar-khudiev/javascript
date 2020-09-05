@@ -6,7 +6,7 @@
     <meta name="description" content="JQuery example">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JQuery</title>
+    <title>JQuery 3</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -81,7 +81,7 @@
 
     <p id="my-p2">This is PARAGRAPH 2 (click me)</p><br>
     <p id="my-p3">This is PARAGRAPH 3 (click me)
-    <p id="result" style="
+        <p id="result" style="
         color: white;
         background-color: cadetblue;
         width: max-content;"></p>
@@ -130,9 +130,9 @@
     </div><br><br><br>
 
     <script>
-        $(function () {
+        $(function() {
 
-            $("#my-p").on("click", function () {
+            $("#my-p").on("click", function() {
                 $(this).animate({
                     fontSize: "+=6px"
                 });
@@ -144,7 +144,7 @@
                 name: "Elvar",
                 surname: "Khudiev",
                 age: 20,
-                test: function () {
+                test: function() {
                     $("#my-p").text("Name: " + this.name + "\nSurname: " + this.surname + "\nAge: " + this.age)
                 }
             }
@@ -163,7 +163,8 @@
 
             //----------------------------------------------------------------------------
 
-            var rsCount = -1, scCount = -1;
+            var rsCount = -1,
+                scCount = -1;
 
             resizeCount();
             scrollCount();
@@ -191,11 +192,11 @@
             function pageXY() {
                 marginRightPageXY();
 
-                $(window).mousemove(function (event) {
+                $(window).mousemove(function(event) {
                     marginRightPageXY();
                 });
 
-                $(window).mousemove(function (event) {
+                $(window).mousemove(function(event) {
                     $("#x").text(event.pageX);
                     $("#y").text(event.pageY);
                 });
@@ -203,7 +204,7 @@
 
             //----------------------------------------------------------------------------
 
-            $("form").submit(function () {
+            $("form").submit(function() {
                 var username = $("#username").val();
                 var password = $("#pass").val();
 
@@ -212,97 +213,99 @@
 
             //----------------------------------------------------------------------------
 
-            $("#my-input").select(function () {
+            $("#my-input").select(function() {
                 $("#select-input").text("Text selected");
             });
 
-            $("#Btn2").click(function () {
+            $("#Btn2").click(function() {
                 $("#my-input").trigger("select");
             })
 
             //----------------------------------------------------------------------------
 
             $(".button-submit").hover(
-                function () {
+                function() {
                     $(this).css("background-color", "cornflowerblue");
                 },
-                function () {
+                function() {
                     $(this).css("background-color", "orange");
                 }
             )
 
             //----------------------------------------------------------------------------
 
-            $(".my-p").each(function (i) {
-                $(this).on("click", { x: i }, function (event) {
+            $(".my-p").each(function(i) {
+                $(this).on("click", {
+                    x: i
+                }, function(event) {
                     alert($(this).index() + " . paragraph + " + event.data.x + " data")
                 });
             });
 
             //----------------------------------------------------------------------------
 
-            $(".my-div").on("click", "button", function (event) {
+            $(".my-div").on("click", "button", function(event) {
                 $(event.delegateTarget).css("background-color", "cadetblue");
             });
 
             //----------------------------------------------------------------------------
 
-            $(".my-div").click(function (event) {
+            $(".my-div").click(function(event) {
                 alert(event.isPropagationStopped());
             });
 
             //----------------------------------------------------------------------------
 
-            $("#my-p2").on("custom.test-namespace", function (event) {
+            $("#my-p2").on("custom.test-namespace", function(event) {
                 alert(event.namespace);
             });
 
-            $("#my-p2").click(function () {
+            $("#my-p2").click(function() {
                 $("#my-p2").trigger("custom.test-namespace");
             });
 
             //----------------------------------------------------------------------------
 
-            $("#related-target").mouseenter(function (event) {
+            $("#related-target").mouseenter(function(event) {
                 $("#related").text(event.relatedTarget.nodeName);
             })
 
             //----------------------------------------------------------------------------
 
-            $("#my-p3").click(function () {
+            $("#my-p3").click(function() {
                 return "Hello JQuery";
             });
 
-            $("#my-p3").click(function (event) {
+            $("#my-p3").click(function(event) {
                 $("#result").text(event.result);
             });
 
             //----------------------------------------------------------------------------
 
-            $("#div-1").click(function (e) {
+            $("#div-1").click(function(e) {
                 $("#clickDiv1").text("CLICKED");
                 e.stopPropagation();
             });
 
-            $("#div-2").click(function (e) {
+            $("#div-2").click(function(e) {
                 $("#clickDiv2").text("CLICKED");
                 e.stopPropagation();
             });
 
-            $("#div-3").click(function (e) {
+            $("#div-3").click(function(e) {
                 $("#clickDiv3").text("CLICKED");
                 e.stopPropagation();
             });
 
             //----------------------------------------------------------------------------
 
-            $("#events-div").on("mouseenter mouseleave click dblclick", function (e) {
+            $("#events-div").on("mouseenter mouseleave click dblclick", function(e) {
                 $("#event-type").text(e.type);
             });
 
             //----------------------------------------------------------------------------
 
-            $("#username, #pass").on("keydown click", function (e) {
+            $("#username, #pass").on("keydown click", function(e) {
                 $("#which").text(e.which);
             });
 
@@ -330,7 +333,6 @@
         // event.type                 hansi event type-in ishe dushduyunu gosterir
 
         // event.stopImmediatePropagation()          diger eventlerin chagirilmasini engelle
-
     </script>
 
 </body>

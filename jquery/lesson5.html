@@ -6,7 +6,7 @@
     <meta name="description" content="JQuery example">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JQuery</title>
+    <title>JQuery 5</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -68,17 +68,26 @@
             });
 
 
-            $("#changeLink").click(function() {
-                $("#link").attr({
-                    // "ATTRIBUTE-NAME": "NEW-VALUE"
-                    "class": $(this).attr("class") + " new-class"
-                });
+            $("#changeLink").on({
+                click: function() {
 
-                $("#link").attr("href", function(x, getValue) {
-                    return getValue + "/new/url";
-                });
+                    $("#link").addClass("new-class");
 
-                $("#link").html($("#link").text() + "<br>Link changed<br/>");
+                    // $("#link").attr({
+                    //     // "ATTRIBUTE-NAME": "NEW-VALUE"
+                    //     "class": $(this).attr("class") + " new-class"
+                    // });
+
+                    $("#link").attr("href", function(x, getValue) {
+                        return getValue + "/new-url";
+                    });
+
+                    $("#link").html("Link changed");
+                },
+
+                mouseenter: function() {
+
+                }
             });
 
 

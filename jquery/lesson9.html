@@ -4,9 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JQuery 9</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .result span {
+            text-decoration: underline;
+        }
+        
+        .row {
+            display: table-row;
+        }
+        
+        [container] {
+            float: left;
+            margin: 0 20px;
+        }
+        
+        [row] {
+            width: max-content;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,36 +34,359 @@
         <h1>JQuery</h1>
     </center>
 
-    <div container>
-        <div style="width: max-content">
-            <center>
-                <h2>AJAX</h2>
-            </center>
+    <h2>AJAX</h2>
+    <hr>
 
-            <hr>
-            <span id="result">
-                &nbsp;The result will be here&nbsp;
+    <div class="row">
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 1</h2>
+                </center>
+
+                <hr>
+                <span class="result1">
+                &nbsp;The <b>result 1</b> will be here&nbsp;
             </span>
-            <hr>
+                <br><br>
+
+                <span class="result1">
+                &nbsp;The <b>result 2</b> will be here&nbsp;
+            </span>
+                <br><br>
+
+                <span class="result1">
+                &nbsp;The <b>result 3</b> will be here&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button1">Click</button>
         </div>
 
-        <button id="button2">Click</button>
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 2</h2>
+                </center>
+
+                <hr>
+                <span class="result2">
+                &nbsp;The <b>result 4</b> will be here&nbsp;
+            </span>
+                <br><br>
+
+                <span class="result2">
+                &nbsp;The <b>result 5</b> will be here&nbsp;
+            </span>
+                <br><br>
+
+                <span class="result2">
+                &nbsp;The <b>result 6</b> will be here&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button2">Click</button>
+        </div>
+
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 3</h2>
+                </center>
+
+                <hr>
+                <span class="result3">
+                &nbsp;The <b>result</b> will be here&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button3">Click</button>
+        </div>
     </div>
+
+    <div class="row">
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 4</h2>
+                </center>
+
+                <hr>
+                <span class="result4">
+                &nbsp;The <b>result</b> will be here&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button4">Click</button>
+        </div>
+
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 5</h2>
+                </center>
+
+                <hr>
+                <span class="result5">
+                &nbsp;Upload and execute js file&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button5">Click</button>
+        </div>
+
+        <div container>
+            <div row>
+                <center>
+                    <h2>AJAX example 6</h2>
+                </center>
+
+                <hr>
+                <span class="result6">
+                &nbsp;Serialize object&nbsp;
+            </span>
+                <hr>
+            </div>
+
+            <button id="button6">Click</button>
+        </div>
+    </div><br>
+    <hr>
+
+    <div>
+        <p id="result"></p>
+
+        <div id="wait" class="loading" style="display: none;">
+            <img src="https://media.giphy.com/media/sSgvbe1m3n93G/giphy.gif" width="64" height="64" alt="">
+            <br>Loading...
+        </div>
+
+        <div>
+            <button id="loadBtn">Load</button>
+        </div>
+    </div><br>
+    <hr><br>
+
+    <div id="result2" style="
+                        padding: 10px;
+                        border: 2px solid;
+                        width: 150px;
+                        font-family: monospace;
+                        font-size: 17px;
+                        background-color: #000;
+                        color: white;">
+        Name:<br>Surname:
+    </div><br>
+
+    <form id="form1" style="width: max-content;">
+        Firstname: <input type="text" name="Name" value="Elvar" /><br>
+        <hr> Lastname: <input type="text" name="Surname" value="Khudiev" /><br>
+    </form><br>
+
+    <button id="serializableBtn">Click</button><br><br>
+
 
     <script>
         $(function() {
+            // #event (on click)
+            $("#button1").click(function() {
+
+                // .result elementlerini loop ile sech
+                $(".result1").each(function(index) {
+
+                    // sechilmish elemente uygun url-i load metoduna arg. olaraq ver
+                    $(this).load("demo-resp-" + (index + 1) + ".txt #header1, #p1",
+
+                        // (callback) sorgudan gelen cavab, status ve xhr obyektini parametr olaraq al
+                        function(responseTxt, statusTxt, xhr) {
+
+                            // status ugurlu ise, css xususiyyetleri elave et
+                            if (statusTxt == "success") {
+                                $(this).parent().css({
+                                    "color": "#b61818",
+                                    "background-color": "#d654541c",
+                                    "padding": "0px 20px",
+                                    "margin-bottom": "15px",
+                                    "border": "2px solid #ab3535"
+                                });
+                            }
+
+                            // status error ise, ekrana xeberdarliq chixart
+                            else if (statusTxt == "error") {
+                                alert("Error: " + xhr.status + " : " + xhr.statusTxt);
+                            }
+                        });
+                });
+            });
+
+            //--------------------------------------------------------------------------------
+
+            // event (on click)
             $("#button2").click(function() {
-                $("#result")
-                    .load("demo-resp-1.txt #header1, #p1", function(responseTxt, statusTxt, xhr) {
-                        if (statusTxt = "success") {
-                            alert("Success");
-                            $(this).css("color", "lightslategray");
-                        } else if (statusTxt = "error") {
-                            alert("Error: " + xhr.status + " : " + xhr.statusTxt);
-                        }
-                    })
+
+                // .result2 elementlerini loop ile sech
+                $(".result2").each(function(index, item) {
+
+                    // sechilmish elemente uygun url-i $.get metoduna arg. olaraq ver
+                    $.get("demo-resp-" + (index + 4) + ".txt",
+
+                        // (callback)
+                        function(data, status) {
+
+                            // sechilmish elementin innerHTML-e sorgudan gelen data ve status-u menimset
+                            item.innerHTML = "<b>Data:</b> " + data + "<b>Status:</b> " + status + "<br>";
+
+                            if (status == "success") {
+                                $(".result2").parent().css({
+                                    "color": "#2c3c4f",
+                                    "background-color": "#f6f6ff",
+                                    "padding": "0px 20px",
+                                    "margin-bottom": "15px",
+                                    "border": "2px solid #3e416e"
+                                });
+                            }
+                        });
+                });
+            });
+
+            //--------------------------------------------------------------------------------
+
+            $("#button").click(function() {
+                $.post(
+
+                    // url
+                    "demo-resp-1.java",
+
+                    // data
+                    {
+                        name: "Elvar",
+                        surname: "Khudiev"
+                    },
+
+                    // callback
+                    function() {
+                        // ...
+                    });
+            });
+
+            //--------------------------------------------------------------------------------
+
+            $("#button3").click(function() {
+                $.ajaxSetup({
+                    url: "demo-resp-1.txt",
+                    success: function(result) {
+                        $(".result3").html("<h3>Data:</h3> " + result);
+                    }
+
+                    // data, type, async ...
+                });
+
+                $.ajax();
+            });
+
+            //--------------------------------------------------------------------------------
+
+            $("#button4").click(function() {
+                $.getJSON("demo.json", function(result) {
+                    $(".result4").html(
+                        "<h3>Data:</h3>" +
+                        "&nbsp;&nbsp;<b>Planet:<b> " + result.planet +
+                        "<br>&nbsp;&nbsp;<b>Country:<b> " + result.country +
+                        "<br>&nbsp;&nbsp;<b>City:<b> " + result.city);
+                });
+            });
+
+            //--------------------------------------------------------------------------------
+
+            $("#button5").click(function() {
+                $.getScript("demo.js");
+            });
+
+            //--------------------------------------------------------------------------------
+
+            personObj = new Object();
+            personObj.name = "Elvar";
+            personObj.surname = "Khudiev";
+            personObj.age = 18;
+
+            $("#button6").click(function() {
+                $(".result6").text($.param(personObj, false));
+            });
+
+            //--------------------------------------------------------------------------------
+
+            $(document).ajaxStart(function() {
+                $("#wait").css("display", "block");
+                $("#loadBtn").css("display", "none");
+            });
+
+            $(document).ajaxComplete(function() {
+                $("#wait").css("display", "none");
+            });
+
+            $(document).ajaxSuccess(function() {
+                alert("Success !!!");
+            });
+
+            $(document).ajaxError(function() {
+                alert("Error !!!");
+            });
+
+            $(document).ajaxSend(function() {
+                $("#result").text("Please wait...");
+            });
+
+            $("#loadBtn").click(function() {
+                $("#result").load("demo-resp-1.txt"); // Success
+                // $("#result").load("abcdefghikl.txt"); // Error
+            });
+
+            $("#serializableBtn").click(function() {
+                var arr = $("#form1").serializeArray();
+                var element = $("#result2");
+
+                element.html("");
+
+                $.each(arr, function(index, field) {
+                    element.append(field.name + ": " + field.value + "<br>");
+                });
             });
         });
+
+        // load(url, ?data, ?callback)    | callback func. params. --> responseTxt, statusTxt, xhr
+        //                                 serverden data-i yukleyib sechilen elemente yerleshdirir
+
+        // $.get(url, ?callback)          | callback func. params. --> data, status
+        //                                 serverden HTTP GET sorgusu ile data chekir
+
+        // $.post(url, ?data, ?callback)  | callback func. params. --> data, status
+        //                                 serverden HTTP POST sorgusu ile data chekir
+
+        // $.ajax(obj)                     asynchronize AJAX sorgusu
+        // $.ajaxSetup()                   bu metoddan sonra chagirilacag olan $.ajax metoduna default deyerler verir
+        // $.getScript()                   AJAX HTTP GET sorgusu ile serverden bir javascript yukleyir (ishe salir)
+        // $.getJSON()                     JSON data-i HTTP GET sorgusu ile bir serverden yukleyir
+
+        // $.parseJSON()                   V3.0-den istifadesi legv edilib, evezine JSON.parse() metodu istifade et
+        //                                     JSON string-i alir ve onun JS deyerini return edir
+
+        // $.param()                       obyekti/arrayi serialize edib bir url-de ve ya AJAX sorgusunda istifadeye
+        //                                   uygun hala getirir
+
+        // ajaxComplete()                  AJAX sorgusu tamamlananda verilecek metodu ishe salir
+        // ajaxError()                     AJAX sorgusu error ile tamamlananda verilecek metodu ishe salir
+        // ajaxSend()                      AJAX sorgusu bashlayanda derhal verilecek metodu ishe salir
+        // ajaxStart()                     ilk AJAX sorgusu bashlayanda verilecek metodu ishe salir
+        // ajaxStop()                      butun AJAX sorgusu tamamlananda verilecek metodu ishe salir
+        // ajaxSuccess()                   AJAX sorgusu success-le tamamlananda verilecek metodu ishe salir
+
+        // serialize()                     form elementlerini string olaraq kodlayir
+        // serializeArray()                bir array form elementini bir name ve value arrayi olaraq kodlayir
     </script>
 </body>
 

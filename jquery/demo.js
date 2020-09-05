@@ -1,0 +1,1 @@
+alert("Uploaded javascript file and executed commands")
