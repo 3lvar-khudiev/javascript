@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 11</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/lesson11.css">
+</head>
+
+<body>
+
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    JQuery version is "<span id="result1">x.y.z</span>"<br><br>
+    <button id="btnShowVersion">Show version</button><br><br>
+    <hr><br><br>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    <button class="customBtn" id="disable">True (disable)</button>
+    <button class="customBtn" id="enable">False (enable)</button>
+    <button class="customBtn" id="run">Run animation</button><br><br>
+
+    <div id="box1" class="box"></div>
+    <br>
+    <hr><br>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    <span>Can this browser create an XMLHttpRequest object? :
+        <span id="result3">
+            <!-- Answer will be here -->
+        </span>
+    </span>
+
+    <button id="btnShowAnswer">Show answer</button><br><br>
+    <hr><br><br><br>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    <div id="container_tbl">
+
+        <div id="headerDiv">
+            <div id="tblHeader" style="float: left;">
+                Search Example
+            </div>
+            <div id="searchDiv">
+                <input type="text" id="search" placeholder="Search">
+            </div>
+        </div>
+
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Elvar 1 A</td>
+                    <td>Khudiev 1</td>
+                    <td>elvarkhudiev1@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Elvar 2 AB</td>
+                    <td>Khudiev 2</td>
+                    <td>elvarkhudiev2@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Elvar 3 ABC</td>
+                    <td>Khudiev 3</td>
+                    <td>elvarkhudiev3@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Elvar 4 ABCD</td>
+                    <td>Khudiev 4</td>
+                    <td>elvarkhudiev4@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br><br><br>
+    <hr>
+
+    <!-- ----------------------------------------------------------------- -->
+
+    <h2>clearQueue()</h2>
+
+    <button class="customBtn" id="run2">Run animation</button>
+    <button class="customBtn" id="stop2">Stop</button><br><br>
+
+    <div id="box2" class="box"></div><br>
+    <hr><br>
+
+
+    <h2>finish()</h2>
+
+    <button class="customBtn" id="run3">Run animation</button>
+    <button class="customBtn" id="stop3">Finish</button><br><br>
+
+    <div id="box3" class="box"></div><br>
+    <hr><br>
+
+
+    <h2>delay()</h2>
+
+    <button class="customBtn" id="run4">Run animation</button><br><br><br><br>
+    <img id="image" src="image/photo2.jpg" width="156"><br>
+    <div id="imageBackDelay"></div><br><br>
+    <hr><br>
+
+
+    <h2>queue() / dequeue()</h2>
+
+    <button class="customBtn" id="run5">Run animation</button>
+
+    <div id="box5" class="box"></div><br>
+    <hr><br>
+
+
+    <h2>Misc.</h2>
+
+    <div class="btn_click">
+        <button class="customBtn" id="btnClick1">Add h2 tags</button>
+    </div>
+
+    <div class="btn_click">
+        <button class="customBtn" id="btnClick2">Change document title</button>
+    </div>
+
+    <div class="btn_click">
+        <button class="customBtn" id="btnClick3">Show days</button>
+    </div>
+
+    <div class="btn_click">
+        <button class="customBtn" id="btnClick4">Show cars</button>
+    </div><br><br><br>
+
+    <div class="result">
+        <div id="result4">H2 tags</div>
+        <hr><br>
+        <div id="result5">Document title</div>
+        <hr><br>
+        <div id="result6">Days</div>
+        <hr><br>
+        <div id="result7">Cars</div>
+        <hr>
+    </div>
+    <hr><br>
+
+
+
+
+    <div id="imageBack"></div>
+
+    <script>
+        $(function() {
+            $("#btnShowVersion").click(function() {
+                $("#result1").text($().jquery);
+            });
+
+            //----------------------------------------------
+
+            $("#disable").click(function() {
+                $.fx.off = true;
+            });
+
+            $("#enable").click(function() {
+                $.fx.off = false;
+            });
+
+            $("#run").click(function() {
+                $("#box1").toggle("slow");
+            });
+
+            //----------------------------------------------
+
+            $("#btnShowAnswer").click(function() {
+                var answer = $.support.ajax;
+
+                $(this).remove();
+                $("#result3").html("<strong>" + answer + "<strong>");
+            });
+
+            //----------------------------------------------
+
+            $("#search").on("keyup", function() {
+
+                // input-daki vaule-i al
+                var value = $(this).val().toLowerCase();
+
+                // table-in butun setirlerini filter et
+                $("#myTable tbody tr").filter(function() {
+
+                    // setiri show/hide et
+                    $(this).toggle(
+
+                        // eger setir verilen deyeri ehate
+                        // edirse, musbet eded return et ve hemin setirleri show et,
+                        // etmirse, -1 return et ve hemin setirleri hide et
+                        $(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+
+            //----------------------------------------------
+
+            $("#run2").click(function() {
+                var element = $("#box2");
+
+                element.animate({
+                    height: 300
+                }, 1000);
+                element.animate({
+                    width: 300
+                }, 1000);
+                element.animate({
+                    height: 100
+                }, 1000);
+                element.animate({
+                    width: 100
+                }, 1000);
+            });
+
+            $("#stop2").click(function() {
+                $("#box2").clearQueue();
+            });
+
+            //----------------------------------------------
+
+            $("#run3").click(function() {
+                var element = $("#box3");
+
+                element.animate({
+                    height: 300
+                }, 1000);
+                element.animate({
+                    width: 300
+                }, 1000);
+                element.animate({
+                    height: 100
+                }, 1000);
+                element.animate({
+                    width: 100
+                }, 1000);
+            });
+
+            $("#stop3").click(function() {
+                $("#box3").finish();
+            });
+
+            //----------------------------------------------
+
+            $("#run4, #image").click(function() {
+
+                var imageBack = $("#imageBack");
+                var imageBackDelay = $("#imageBackDelay").css("width", "0");
+                var image;
+
+                // image clone edilmeyibse icra et (ilk defe)
+                if ($("#newImage").val() == undefined) {
+
+                    // image-i clone et
+                    image = $("#image").clone();
+
+                    // id-ni deyishdir
+                    image.attr("id", "newImage");
+                } else {
+                    image = $("#newImage");
+                }
+
+                // image-i ve imageBackDelay-i #imageBack-a append et
+                imageBack.append([image, imageBackDelay]);
+
+                imageBack
+                    .fadeIn(1000) // arxa fonu goster (1000ms)
+                    .delay(3000) // gozle (2500ms)
+                    .fadeOut(1500); // arxa fonu gizlet (1500ms)
+
+                image
+                // class elave et
+                    .addClass("centerImage")
+                    .show(1500) // image-i goster (1500ms)
+                    .delay(2500) // gozle (2000ms)
+                    .hide(1000); // image-i gizlet (1000ms)
+
+                imageBackDelay
+                    .delay(1500) // image gorsenene kimi gozle (1500ms)
+                    .show().animate({
+                        "width": "100%" // image gozleyene kimi width-i 100%-e qeder artir (2500ms)
+                    }, 2500);
+            });
+
+            //----------------------------------------------
+
+            $("#run5").click(function() {
+                var resultBox = $("#box5");
+
+                resultBox.animate({
+                    height: 300
+                }, 1000);
+                resultBox.animate({
+                    width: 300
+                }, 1000);
+
+                resultBox.queue(function() {
+                    resultBox.css("background-color", "cornflowerblue");
+
+                    // queue-den chix
+                    resultBox.dequeue();
+                });
+
+                resultBox.animate({
+                    height: 100
+                }, 1000);
+                resultBox.animate({
+                    width: 100
+                }, 1000);
+            });
+
+            //----------------------------------------------
+
+            $("#btnClick1").click(function() {
+                $("#result4").html(
+                    $("<h2></h2>", {
+                        class: "important",
+                        text: "H2 tags added"
+                    }));
+            });
+
+            //----------------------------------------------
+
+            $("#btnClick2").click(function() {
+
+                $(document).prop("title",
+                    $(document).prop("title") + " +" // title-i evvelki + " +"-e deyish
+                );
+
+                var value = $(document).prop("title");
+
+                $("#result5").text(value);
+            });
+
+            //----------------------------------------------
+
+            $("#btnClick3").click(function() {
+                var data1, data2, newData;
+
+                data1 = ["Monday", "Tuesday", "Wednesday"];
+                data2 = ["Thursday", "Friday", "Saturday", "Sunday"];
+
+                newData = $.merge(data1, data2);
+
+                $("#result6")
+                    .html(newData.join("<br>"))
+                    .css({
+                        "border": "2px solid",
+                        "padding": "10px"
+                    });
+            });
+
+            //----------------------------------------------
+
+            $("#btnClick4").click(function() {
+
+                var data = ["Volvo", "Volkswagen", "Mercedes", "Ford", "Nissan", "BMW", "Hyundai"];
+
+                data = $.grep(data, function(value, index) {
+                    return index > 3;
+                });
+
+                $("#result7")
+                    .html(data.join("<br>"))
+                    .css({
+                        "border": "2px solid",
+                        "padding": "10px"
+                    });
+            });
+        });
+
+        // $().jquery           hazirki JQuery-in versiyasini gosterir
+        // $().fx.off           butun animasiyalari enable(false)/disable(true) edir
+        // $().support          ferqli browser xususiyyetlerini temsil eden property-ler toplusu
+
+        // indexOf()            arrayda verilen deyerin yerleshdiyi ilk elementin ilk index-i return edir
+        //                        (movcud deyilse -1 return edir)
+
+        // lastIndexOf()        arrayda verilen deyerin yerleshdiyi son elementin ilk index-i return edir
+        //                        (movcud deyilse -1 return edir)
+
+        // clearQueue()         queue-de olan function-lari sechilen elementlerden silir
+        // finish()             sechilen elementleri uchun queue-de olan butun function-lari stop edir, silir ve tamamlayir
+        // delay()              bu metoddan sonra gelen metodlari verilen muddet qeder gozledikten sonra ishe salir
+        // merge()              arraylari birleshdirir
+        // grep()               verilen arrayin elementlerini func.-dan return olan deyere (boolean) gore filter edir
+        // trim()               verilen metnin evvelinde ve sonunda olan boshluqlari silir
+    </script>
+</body>
+
+</html>

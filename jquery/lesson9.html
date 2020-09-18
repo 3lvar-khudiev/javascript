@@ -175,7 +175,7 @@
     <div id="result2" style="
                         padding: 10px;
                         border: 2px solid;
-                        width: 150px;
+                        width: max-content;
                         font-family: monospace;
                         font-size: 17px;
                         background-color: #000;
@@ -292,19 +292,24 @@
             //--------------------------------------------------------------------------------
 
             $("#button4").click(function() {
-                $.getJSON("demo.json", function(result) {
+                $.getJSON("js/demo.json", function(result) {
+
+                    var space = "&nbsp;&nbsp;";
+
                     $(".result4").html(
                         "<h3>Data:</h3>" +
-                        "&nbsp;&nbsp;<b>Planet:<b> " + result.planet +
-                        "<br>&nbsp;&nbsp;<b>Country:<b> " + result.country +
-                        "<br>&nbsp;&nbsp;<b>City:<b> " + result.city);
+                        space + "<b>Planet:<b> " + result.planet + "<br>" +
+                        space + "<b>Country:<b> " + result.country + "<br>" +
+                        space + "<b>City:<b> " + result.city);
                 });
             });
 
             //--------------------------------------------------------------------------------
 
             $("#button5").click(function() {
-                $.getScript("demo.js");
+                $.getScript("js/demo.js", function() {
+                    alert("Uploaded javascript file and executed commands");
+                });
             });
 
             //--------------------------------------------------------------------------------
@@ -327,6 +332,11 @@
 
             $(document).ajaxComplete(function() {
                 $("#wait").css("display", "none");
+                $("#loadBtn").css("display", "block");
+
+                if ($("#result").text() == "Please wait...") {
+                    $("#result").text("")
+                }
             });
 
             $(document).ajaxSuccess(function() {
@@ -372,7 +382,7 @@
         // $.getScript()                   AJAX HTTP GET sorgusu ile serverden bir javascript yukleyir (ishe salir)
         // $.getJSON()                     JSON data-i HTTP GET sorgusu ile bir serverden yukleyir
 
-        // $.parseJSON()                   V3.0-den istifadesi legv edilib, evezine JSON.parse() metodu istifade et
+        // $.parseJSON()                   V3.0-den istifadesi legv edilib, evezine JSON.parse() metodunu istifade et
         //                                     JSON string-i alir ve onun JS deyerini return edir
 
         // $.param()                       obyekti/arrayi serialize edib bir url-de ve ya AJAX sorgusunda istifadeye

@@ -2,10 +2,10 @@ var pageCounter = 1;
 var animalContainer = document.getElementById("animal-info");
 var btn = document.getElementById("btn");
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", function() {
     var request = new XMLHttpRequest();
     request.open("GET", "https://learnwebcode.github.io/json-example/animals-" + pageCounter + ".json");
-    request.onload = function () {
+    request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             var data = JSON.parse(request.responseText);
             renderHTML(data);

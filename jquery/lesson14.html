@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 14</title>
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/lesson14.css">
+</head>
+
+<body>
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <div id="panel">
+        <h3 class="header_panel">Header 1</h3>
+        <div class="panel_content">
+            <div>
+                <p>Well, I say to them tonight, there is not a liberal America and a conservative America - there is the United States of America. But I will also go through the federal budget, line by line, eliminating programs that no longer work and making
+                    the ones we do need work better and cost less - because we cannot meet twenty-first century challenges with a twentieth century bureaucracy. We meet at a time of tension between the United States and Muslims around the world - tension
+                    rooted in historical forces that go beyond any current policy debate. The sooner the extremists are isolated and unwelcome in Muslim communities, the sooner we will all be safer.</p>
+            </div>
+            <div>
+                <p>And they, too, had big dreams for their daughter. I have made a solemn pledge that I will sign a universal health care bill into law by the end of my first term as president that will cover every American and cut the cost of a typical
+                    family's premiums by up to $2500 a year. But it is a story that has seared into my genetic makeup the idea that this nation is more than the sum of its parts - that out of many, we are truly one. We meet at a time of tension between
+                    the United States and Muslims around the world - tension rooted in historical forces that go beyond any current policy debate. We see it in the history of Andalusia and Cordoba during the Inquisition.</p>
+            </div>
+        </div>
+
+        <h3 class="header_panel">Header 2</h3>
+        <div class="panel_content">
+            <p>They stood on the Edmund Pettus Bridge, as the blows of billy clubs rained down. We can play Reverend Wright's sermons on every channel, every day and talk about them from now until the election, and make the only question in this campaign
+                whether or not the American people think that I somehow believe or sympathize with his most offensive words. You make a big election about small things. And I consider it part of my responsibility as President of the United States to fight
+                against negative stereotypes of Islam wherever they appear.</p>
+        </div>
+
+        <h3 class="header_panel">Header 3</h3>
+        <div class="panel_content">
+            <p>Last time we took up immigration reform, it failed. The truth is, on issue after issue that would make a difference in your lives - on health care and education and the economy - Senator McCain has been anything but independent. For over a
+                thousand years, Al-Azhar has stood as a beacon of Islamic learning, and for over a century, Cairo University has been a source of Egypt's advancement. For instance, in the United States, rules on charitable giving have made it harder for
+                Muslims to fulfill their religious obligation.</p>
+            <ul>
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+            </ul>
+        </div>
+
+        <h3 class="header_panel">Header 4</h3>
+        <div class="panel_content">
+            <p>The people I meet - in small towns and big cities, in diners and office parks - they don't expect government to solve all their problems. But there's a story I want to share that takes place before Moses passed the mantle of leadership on
+                to Joshua. And I've seen it in this campaign. And while America in the past has focused on oil and gas in this part of the world, we now seek a broader engagement.</p>
+            <p>A belief that we're all connected as one people. I have come here to seek a new beginning between the United States and Muslims around the world; one based upon mutual interest and mutual respect; and one based upon the truth that America
+                and Islam are not exclusive, and need not be in competition. The question, now, is not what Iran is against, but rather what future it wants to build.</p>
+        </div>
+    </div>
+
+    <div id="dialogContainment">
+        <div id="dialogBox">
+            <div id="dialogTitle">
+                <div id="dialogTitleIn">
+                    <div id="moveDialog">
+                        Draggable Dialog Box
+                    </div>
+                    <div id="closeDialog">
+                        <button id="closeButton">
+                            <i id="closeIcon" class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="dialogBody">
+                <div id="dialogInputs">
+                    <input type="text" name="firstName" class="dialogInput" id="firstName" placeholder="First name">
+                    <input type="text" name="lastName" class="dialogInput" id="lastName" placeholder="Last name">
+                    <textarea name="dialogTextarea" class="dialogInput" id="dialogTextarea" placeholder="Message" cols="30" rows="20"></textarea>
+                </div>
+                <div id="submitDialogDiv">
+                    <button id="submitDialog">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/58c834f150.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            $("#dialogBox").draggable({
+                containment: "document",
+                handle: "#dialogTitle",
+                axis: "y"
+            });
+
+            function startDialog() {
+                $("#dialogBox").draggable("disable");
+                $("#dialogTitle").css("cursor", "pointer");
+                $("#closeDialog").hide();
+            }
+            startDialog();
+
+            $("#closeButton").click(function(e) {
+                e.stopPropagation();
+
+                $("#closeDialog").hide();
+                $("#dialogBody").hide();
+                $("#dialogBox")
+                    .css({
+                        "left": "auto",
+                        "top": "auto",
+                        "bottom": "0",
+                        "right": "20px"
+                    });
+
+                $("#dialogBox").draggable("disable");
+                $("#dialogTitle").css("cursor", "pointer");
+            });
+
+            $("#dialogTitle").click(function() {
+                var body = $("#dialogBody");
+
+                if (body.is(":hidden")) {
+                    $(body).slideDown(300);
+                    $("#closeDialog").show();
+                    $(this).css("cursor", "move");
+                    $("#dialogBox").draggable("enable");
+                }
+            });
+
+            $("#submitDialog").click(function() {
+                $(".dialogInput").val("");
+            });
+
+            // -------------------------------------------------
+
+            $("#panel").accordion({
+                collapsible: true,
+                event: "click",
+                animate: 500,
+                heightStyle: true,
+                active: false,
+                icons: {
+                    header: "ui-icon-plus",
+                    activeHeader: "ui-icon-minus"
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+body {
+    padding: 0 8%;
+}
+
+.box {
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    background-color: #832a1e;
+}
+
+
+/*--------------------------------------------- */
+
+#headerDiv {
+    padding: 15px 15px 0 15px;
+    background-color: #e5eaed;
+}
+
+#search {
+    border-radius: 0;
+    border: 1px solid;
+    font-size: 15px;
+    padding: 7px;
+    transition: 0.3s;
+}
+
+#searchDiv :hover {
+    box-shadow: 0px 0px 10px 0px grey;
+}
+
+#searchDiv {
+    background-color: #e1ebf1;
+    text-align: right;
+}
+
+#container_tbl {
+    width: max-content;
+    margin-left: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: 0.4s;
+}
+
+#container_tbl:hover {
+    box-shadow: 0 0 20px -2px grey;
+}
+
+#tblHeader {
+    font-size: x-large;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 8px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px white;
+}
+
+table {
+    font-size: large;
+    background-color: #e5eaed;
+    padding: 15px;
+}
+
+#myTable tbody td {
+    border: 2px solid;
+    padding: 10px;
+    width: 250px;
+    background-color: #eff5f7;
+}
+
+#myTable thead th {
+    border: 2px solid;
+    padding: 10px;
+    width: 250px;
+    background-color: #f6f9f8;
+}
+
+
+/*--------------------------------------------- */
+
+.customBtn {
+    padding: 10px 30px;
+    width: max-content;
+    text-align: center;
+    border: 2px solid #827249;
+    border-radius: 100px;
+    color: white;
+    background-color: #827249;
+    font-family: system-ui;
+    font-weight: bold;
+    outline: 0;
+}
+
+.customBtn:hover {
+    font-weight: bold;
+    color: #827249;
+    background-color: white;
+    border: 2px solid #827249;
+}
+
+#run4 {
+    float: left;
+}
+
+
+/*--------------------------------------------- */
+
+.centerImage {
+    position: fixed;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: none;
+}
+
+#imageBack {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+#image {
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#image:hover {
+    opacity: 0.8;
+    transform: scale(1.07);
+}
+
+#imageBackDelay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    display: none;
+}
+
+
+/*--------------------------------------------- */
+
+.important {
+    font-weight: bold;
+    font-size: xx-large;
+    color: darkolivegreen;
+}
+
+.btn_click {
+    float: left;
+    width: max-content;
+    padding: 0 10px;
+}
+
+.result {
+    width: max-content;
+    padding: 20px;
+}

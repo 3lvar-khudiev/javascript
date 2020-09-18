@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 12</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/lesson12.css">
+</head>
+
+<body>
+    <center>
+        <h1>JQuery</h1>
+    </center>
+
+    <ul class="ul">
+        <li>List 1, row 1</li>
+        <li>List 1, row 2</li>
+        <li>List 1, row 3</li>
+        <li>List 1, row 4</li>
+        <li>List 1, row 5</li>
+    </ul>
+    <ul class="ul">
+        <li>List 2, row 1</li>
+        <li>List 2, row 2</li>
+    </ul>
+    <ul class="ul">
+        <li>List 3, row 1</li>
+        <li>List 3, row 2</li>
+        <li>List 3, row 3</li>
+        <li>List 3, row 4</li>
+    </ul>
+
+    <div style="clear: left;"></div><br><br>
+
+    <button class="customBtn" id="alignBtn">Align height</button><br><br>
+    <hr><br>
+
+
+    <span class="span">div 1</span>
+    <div class="container">
+
+        <span class="span">div 2</span>
+        <div id="divContent">
+
+            <span class="span">paragraph</span>
+            <p>JQuery is fun</p>
+
+            <span class="span">paragraph</span>
+            <p>AJAX is fun</p>
+
+            <span class="span"></span>
+        </div>
+    </div><br>
+
+
+    <button class="customBtn" id="changeBtn">Change "div 2" → "hr"</button><br><br>
+    <hr><br>
+
+
+    <button class="customBtn" id="ajaxCallBtn">AJAX call</button><br><br>
+    <hr><br>
+
+
+    <div id="imgContainer">
+        <div class="img">
+            <a class="group1" href="image/1.jpg" title="Me and my grandfather on the Ohoopee.">
+                <img src="image/1.jpg" alt="" width="150">
+                <div class="img_text">image 1</div>
+            </a>
+        </div>
+
+        <div class="img">
+            <a class="group1" href="image/2.jpg" title="On the Ohoopee as a child">
+                <img src="image/2.jpg" alt="" width="150">
+                <div class="img_text">image 2</div>
+            </a>
+        </div>
+
+        <div class="img">
+            <a class="group1" href="image/3.jpg" title="On the Ohoopee as an adult">
+                <img src="image/3.jpg" alt="" width="150"></img>
+                <div class="img_text">image 3</div>
+            </a>
+        </div>
+    </div><br style="clear: left;"><br>
+    <hr><br>
+
+    <script src="js/jquery.colorbox-min.js"></script>
+
+    <script>
+        $(function() {
+            $("#alignBtn").click(function() {
+
+                var maxValue = 0;
+
+                $(".ul").each(function() {
+
+                    // .ul classlari arasindan height-i max. olanin height-ni maxValue deyishenine menimset
+                    maxValue =
+                        Math.max(
+                            $(this).height(), maxValue
+                        );
+                });
+
+                $(".ul").animate({
+                    height: maxValue
+                }, 700);
+            });
+
+            // ----------------------------------------------------------
+
+            $("#changeBtn").click(function() {
+                $("#divContent").replaceWith(function() {
+
+                    // container ichindeki ilk ve son .span-in text-ni "hr" et
+                    $(".container .span").first().text("hr").end().last().text("hr");
+
+                    // elementi hr ile ehate et
+                    return "<hr>" + $(this).html() + "<hr>";
+                });
+            });
+
+            // ----------------------------------------------------------
+
+            $("#ajaxCallBtn").click(function() {
+                var url = "js/demo.js";
+
+                $.when($.ajax(url)).then(nice, wrong);
+
+                function nice() {
+                    alert("Success !!! (nice() func.)\n\n$.when($.ajax(" + url + ")).then(nice, wrong);");
+                }
+
+                function wrong() {
+                    alert("Error !!! (wrong() func.)\n\n$.when($.ajax(" + url + ")).then(nice, wrong);");
+                }
+            });
+
+            // ----------------------------------------------------------
+
+            $(".group1").colorbox({
+                rel: "group1",
+                transition: "fade",
+                slideshow: true
+            });
+        });
+
+
+
+
+
+        // * when block-u AJAX sorgusunu kontrol etdikden sonra
+        // * then block-u iki parametr (function_name) alir ,
+        // eger AJAX sorgusu dogru olsa birinci, yanlish olsa ikinci func. ishe dushur
+    </script>
+</body>
+
+</html>

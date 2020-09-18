@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 15</title>
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/lesson15.css">
+</head>
+
+<body>
+
+    <div id="container">
+        <button id="login">
+            Login
+        </button>
+
+        <p>;ksdjf;kadlkfja;slkfjaskldfjaslkdjfa</p>
+        <p>;ksdjf;kadlkfja;slkfjaskldfjaslkdjfa</p>
+        <p>;ksdjf;kadlkfja;slkfjaskldfjaslkdjfa</p>
+    </div>
+
+    <div id="loginContainer">
+        <h1 id="loginHeader">Login</h1>
+
+        <form action="#" id="formLogin" method="POST">
+            <p>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" maxlength="16">
+            </p>
+            <p>
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" maxlength="24">
+            </p>
+
+            <div id="btnLoginDiv">
+                <button type="button" id="btnLogin">Login</button>
+            </div>
+        </form>
+        <div id="status">
+            <label for="message">Status: </label>
+            <div id="message">no status</div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            $("#login").click(function() {
+                $("#container").css({
+                    "button": "disable",
+                    "pointer-events": "none",
+                    "opacity": "0.3",
+                    "transition": "0.5s"
+                });
+                $("#loginContainer").fadeIn(700);
+            });
+
+            $("#btnLogin").click(function() {
+                var username, pass;
+
+                username = $("#username").val();
+                pass = $("#pass").val();
+
+                if (username == "") {
+                    $("#username").removeClass("wrong_field").addClass("empty_field").focus();
+                    $("#pass").removeClass("empty_field wrong_field");
+                    $("#message").html("Username cannot be empty").removeClass("error success").addClass("warning");
+                } else if (pass == "") {
+                    $("#pass").removeClass("wrong_field").addClass("empty_field").focus();
+                    $("#username").removeClass("empty_field wrong_field");
+                    $("#message").html("Password cannot be empty").removeClass("error success").addClass("warning");
+                } else if (username != "Elvar") {
+                    $("#username").removeClass("empty_field").addClass("wrong_field").select();
+                    $("#pass").removeClass("empty_field wrong_field");
+                    $("#message").html("Username is wrong").removeClass("warning success").addClass("error");
+                } else if (pass != "12345") {
+                    $("#pass").removeClass("empty_field").addClass("wrong_field").select();
+                    $("#username").removeClass("empty_field wrong_field");
+                    $("#message").html("Password is wrong").removeClass("warning success").addClass("error");
+                } else {
+                    $("#message").html("Successfully").removeClass("warning error").addClass("success");
+                    $("#pass").removeClass("empty_field wrong_field");
+                    $("#username").removeClass("empty_field wrong_field");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
