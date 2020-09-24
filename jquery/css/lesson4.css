@@ -9,13 +9,15 @@
     background-color: lightslategray;
     color: white;
     font-family: cursive;
-    text-align: -webkit-right;
+    text-align: right;
     padding: 10px;
     margin-bottom: 20px;
 }
 
 .comment-text {
     text-align: left;
+    outline: none;
+    width: 80%;
 }
 
 .text-area {
