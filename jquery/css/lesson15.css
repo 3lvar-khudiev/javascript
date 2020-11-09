@@ -10,12 +10,6 @@
     background-color: #047504 !important;
 }
 
-#message {
-    width: 500px;
-    padding: 5px;
-    color: white;
-}
-
 .empty_field {
     box-shadow: 0 0 5px #c7ae1f;
 }
@@ -31,7 +25,7 @@ input {
 #loginContainer {
     transform: scale(1.1);
     position: fixed;
-    padding: 10px 3% 40px 3%;
+    padding: 30px 2.8% 40px 3%;
     width: 18%;
     font-size: 13px;
     font-family: 'Montserrat', sans -serif;
@@ -82,7 +76,7 @@ input {
     border: none;
     outline: none;
     color: whitesmoke;
-    background-color: #97b894;
+    background-color: #55984e;
 }
 
 #btnLogin:hover {
@@ -92,6 +86,10 @@ input {
     cursor: pointer;
     color: rgb(68, 116, 62);
     background-color: whitesmoke;
+}
+
+#btnLogin:active {
+    box-shadow: 0 0 7px 0px rgb(119 119 119 / 80%);
 }
 
 #status {
@@ -104,10 +102,12 @@ input {
 #status label {
     width: max-content;
     top: 500%;
-    padding: 5px 0;
+    padding: 7px 0;
 }
 
 #message {
+    padding: 9px;
+    color: white;
     float: right;
     text-align: center;
     margin-left: 10px;
@@ -134,4 +134,13 @@ input {
     cursor: pointer;
     color: rgba(54, 99, 107, 0.795);
     background-color: whitesmoke;
+}
+
+#close {
+    cursor: pointer;
+    float: right;
+}
+
+#close i {
+    font-size: 20px;
 }

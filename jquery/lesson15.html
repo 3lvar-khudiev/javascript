@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/lesson15.css">
+    <script src="https://kit.fontawesome.com/58c834f150.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -19,9 +20,15 @@
     </div>
 
     <div id="loginContainer">
-        <h1 id="loginHeader">Login</h1>
+        <div id="close">
+            <i class="fas fa-times"></i>
+        </div>
 
-        <form action="#" id="formLogin" method="POST">
+        <div id="formHeader">
+            <h1 id="loginHeader">Login</h1>
+        </div>
+
+        <form id="formLogin" method="POST">
             <p>
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" maxlength="16">
@@ -32,7 +39,7 @@
             </p>
 
             <div id="btnLoginDiv">
-                <button type="button" id="btnLogin">Login</button>
+                <button type="submit" id="btnLogin">Login</button>
             </div>
         </form>
         <div id="status">
@@ -46,6 +53,8 @@
 
     <script>
         $(function() {
+            $("#formLogin").submit(false);
+
             $("#login").click(function() {
                 $("#container").css({
                     "button": "disable",
@@ -54,6 +63,7 @@
                     "transition": "0.5s"
                 });
                 $("#loginContainer").fadeIn(700);
+                $("#username").focus();
             });
 
             $("#btnLogin").click(function() {
@@ -83,6 +93,15 @@
                     $("#pass").removeClass("empty_field wrong_field");
                     $("#username").removeClass("empty_field wrong_field");
                 }
+            });
+
+            $("#close").click(function() {
+                $("#container").css({
+                    "button": "enable",
+                    "pointer-events": "auto",
+                    "opacity": "1"
+                });
+                $("#loginContainer").fadeOut(700);
             });
         });
     </script>
